@@ -1,0 +1,96 @@
+package com.mycompany.e3ZahriF;
+
+/**
+ *
+ * @author naw12
+ *///Aquesta línia fa que la biblioteca estigui disponible.
+import java.util.Scanner;
+public class E3_ZahriF {
+
+    public static void main(String[] args) { 
+
+    //tipus de dades, declarar llarg i amples
+    float llarg = 300.3f;
+    float ample1 = 150.5f;
+    float ample2 = 80.5f;
+    float prof1 = 20.5f;
+    float prof2 = 35.5f;
+
+        
+    //S'inicialitza la biblioteca (perque l'usuari introdueixi les dades noves. 
+
+    Scanner lector = new Scanner(System.in);
+
+System.out.print("Introdueix ample 1: ");
+ample1 = lector.nextFloat();
+
+System.out.print("Introdueix profunditat 1: ");
+prof1 = lector.nextFloat();
+
+System.out.print("Introdueix ample 2: ");
+ample2 = lector.nextFloat();
+
+System.out.print("Introdueix profunditat 2: ");
+prof2 = lector.nextFloat();
+
+//Ara calculem l'àrea
+    int area1;
+    int area2;
+
+    area1 =(int)(llarg*ample1);
+    area2 =(int)(llarg*ample2);
+
+//Calculem volums
+    int volum1;
+    int volum2;
+
+    volum1 =(int)(area1*prof1);
+    volum2 =(int)(area2*prof2);
+
+//Resum dels resultats finals areas, volums,etc..
+
+System.out.println("PISCINA1  " + "ample: "+ ample1 + ", llarg: "+ llarg +
+ ", profunditat:" + prof1 + ", volum: " + volum1 + ", area1: " + area1 );
+
+System.out.println("PISCINA2  " + "ample: "+ ample2 + ", llarg: "+ llarg +
+", profunditat:" + prof2 + ", volum: " + volum2 + ", area1: " + area2 );
+
+//Calcul llarg piscines una al costat de l'altre
+    float ampleNou;
+
+ampleNou = ample1+ample2;
+
+//calcul area de les 2 piscines juntes
+    int areaNou;
+
+    areaNou = (int)(llarg*ampleNou);
+
+    int volumNou;
+
+    volumNou = volum1 + volum2;
+
+System.out.println("El nou espai ocupat és: " + "Llarg: " + llarg + ", Ample: " 
+        + ampleNou + ", Àrea: " + areaNou + ", Volum: " + volumNou );
+
+ //Intercanviar  els valors de profunditat de les dues piscines 
+
+    float aux = prof1;
+    prof1 = prof2;
+    prof2 = aux;
+
+//Tornar a calcular i mostrar el valor del volum d'aigua
+
+    volum1 = (int)(area1 * prof1);
+    volum2 = (int)(area2 * prof2);
+    
+System.out.println("Volum Piscina 1 desprès del intercanvi: ");
+System.out.println("Llarg: "+llarg+", Ample: "+ample1+", Profunditat:"+
+prof1+", Volum: "+volum1);
+
+    
+System.out.println("Volum Piscina 2 desprès del intercanvi: ");
+System.out.println("Llarg: "+llarg+", Ample: "+ample2+", Profunditat:"+
+prof2+", Volum: "+volum2);
+
+}
+}
