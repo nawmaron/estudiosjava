@@ -1,0 +1,150 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.e7_zahrif;
+
+/**
+ *
+ * @author naw12
+ */  
+import java.util.Scanner;
+public class E7_ZahriF {
+//CATEGORIES
+public static final int CATEG1 = 1;
+public static final int CATEG2 = 2;
+public static final int CATEG3 = 3;
+public static final int CATEG4 = 4;
+public static final int CATEG5 = 5;
+public static final int CATEG6 = 6;
+//IVA
+public static final int IVA_SREDUIT = 4;
+public static final int IVA_REDUIT = 8;
+public static final int IVA_GENERAL = 8;
+//IMPORT COMPRES
+public static final int COMPRA1 = 101;
+public static final int COMPRA2 = 501;
+//COST ENVIAMENT
+public static final int COST1 = 3;
+public static final int COST2 = 20;
+public static final int COST3 = 50;
+    public static void main(String[] args){
+    
+        //Definim tipus de dades
+            int opcio;
+            int num_unitats;
+            int categoria;
+            int iva;
+            int cost;
+            float preu;
+            float preu_final;
+            float preu_SIVA;
+            
+            
+    
+         //S'inicialitza la biblioteca (perque l'usuari introdueixi les dades)
+         Scanner scan = new Scanner(System.in);
+         
+         //Fem control d'errors en l'entrada per si es posa una categoria erronea
+         boolean dadaCorrecte;
+         
+         //L'App ens mostrarà les següents opcions:
+         
+         System.out.println("1- Calcul del preu final");
+         System.out.println("2- Quin IVA s'aplica");
+         System.out.println("3- Cost enviament");
+         System.out.print("Selecciona una opció: "); 
+         
+         dadaCorrecte = scan.hasNextInt();//aqui analitzem el tipus de dada que
+                                          //hem seleccionat
+         if ( dadaCorrecte ){ // si és int
+             opcio = scan.nextInt();
+             if (opcio == 1){
+            //Demanem i llegim les dades d'usuari
+            System.out.print("Preu: ");
+                preu = scan.nextFloat();
+            System.out.print("Numero d'unitats: ");
+                num_unitats = scan.nextInt();
+            System.out.print("Categoria: ");
+                categoria = scan.nextInt();
+                
+            //Mirem quin tipus d'IVA hem d'aplicar
+            switch(categoria){
+                case CATEG1: 
+                case CATEG2:
+                    iva = IVA_SREDUIT;
+                    break;
+                case CATEG3: 
+                case CATEG4:
+                    iva = IVA_REDUIT;
+                    break;
+                case CATEG5: 
+                case CATEG6:
+                    iva = IVA_GENERAL;
+                    break;
+                default:
+                    iva = IVA_GENERAL;
+}
+        //Calculem el preu final i mostrem el resultat
+        preu_final = (preu+preu*iva/100)*num_unitats;
+        System.out.println("El preu final es: "+preu_final); 
+        
+        //seleccionem opció 2, quin iva s'aplica?
+        
+        }else{
+            if (opcio ==2){
+             //Demanem i llegim la categoria
+             System.out.print("Categoria: ");
+                 categoria = scan.nextInt();
+            
+            switch(categoria){
+                case CATEG1: 
+                case CATEG2:
+                  iva = IVA_SREDUIT;
+                  break;
+                case CATEG3: 
+                case CATEG4:
+                  iva = IVA_REDUIT;
+                  break;
+                case CATEG5: 
+                case CATEG6:
+                  iva = IVA_GENERAL;
+                  break;
+                default:
+                 iva = IVA_GENERAL;
+            }
+        //calculem i mostrem del resultat
+        System.out.println("L'IVA és de: "+iva);
+        
+        //seleccionem opció 3, quin és el cost d'enviament 
+            } else{
+                if (opcio == 3){
+                    
+        //Demanem i llegim dades d'usuari
+        System.out.print("Preu: ");
+            preu = scan.nextFloat();
+        System.out.print("Num. unitats: ");
+            num_unitats = scan.nextInt();
+            
+        //calcul del preu sense IVA
+            preu_SIVA = preu*num_unitats;
+        
+                if(preu_SIVA<COMPRA1){
+                  cost = COST1;
+            }else{
+                if(preu_SIVA<COMPRA2){
+                    cost = COST2;
+            }else{
+                    cost = COST3;
+}
+}
+            { System.out.println("El cost de l'enviament és de: "+cost);
+}
+}else{
+             System.out.println("Incorrecte. Has d'entrar 1, 2 o 3.");
+}
+}
+}
+}
+}
+    }
