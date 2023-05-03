@@ -1,0 +1,65 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.e12_zahrif;
+import java.util.Scanner;
+/**
+ *
+ * @author naw12
+ */
+public class E12_ZahriF {
+
+public static void main (String[] args) {
+
+//Definim tipus de dades
+            int num_usuaris = 0;
+            Scanner scan = new Scanner(System.in);
+            boolean dadaCorrecta;
+ 
+            
+  //A continuació començem a demanar les dades 
+   System.out.print("Num. de persones que vols entrar: ");
+    dadaCorrecta = scan.hasNextInt();//Analitzem el tipus de dada
+    if (dadaCorrecta){ // avalua que la dada entrada sigui sencer
+        num_usuaris = scan.nextInt();
+    }
+    
+    //Demanem el codi d'usuaris 
+        int[]codi = new int[num_usuaris]; //reservar espai en memòria per emmagatzemar una quantitat num_usuaris d'enters 
+        for(int i = 1; i < num_usuaris; i++) {
+        System.out.print("Entra el codi de l'usuari: ");
+            codi[i] = scan.nextInt();
+     } 
+        //Mostrarà el llistat dels codis emmagatzemats
+        System.out.println("\nLlistat dels codis entrats:");
+            for(int i=0; i<num_usuaris; i++){
+        System.out.println(codi[i]);
+    }
+            
+            //A continuació farem servir l'ordenació de l'array bombolla
+            //per comparar repetidament parells d'elements adjacents 
+            //d'un array i intercanviar-los si estan en l'ordre equivocat.
+            
+            for (int i = 0; i < codi.length - 1; i++) {
+            //Bucle intern.
+            //Mirem entre la resta quin és el valor més baix
+            for(int j = i + 1; j < codi.length; j++) {
+            if (codi[i]>codi[j]) { 
+            //Per intercanviar valors creem una nova variable amb numeros enters
+            int codiIntercanvi;
+            codiIntercanvi = codi[i];
+            codi[i] = codi[j];
+            codi[j] = codiIntercanvi;
+        }
+     }  
+}
+            
+    //Desrprés de executar l'ordenació en bombolla  es mostrarà el llistat dels codis emmagatzemats ordenats
+     System.out.println("\nLlistat dels codis entrats ordenats:");
+        for(int i=0; i<num_usuaris; i++){
+        System.out.println(codi[i]);       
+       }
+     }  
+}
+ 
