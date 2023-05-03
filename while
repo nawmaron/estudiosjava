@@ -1,0 +1,61 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.e8_zahrif;
+
+/**
+ *
+ * @author naw12
+ */
+import java.util.Scanner;
+public class E8_ZahriF {
+    //el programa ens demana que entri un número sencer de 1 a 20.
+    
+//definim els limits d'entrada 
+    public static final int LIMIT_MIN = 0;
+    public static final int LIMIT_MAX = 20;
+//el programa ha de mostrar els seus múltiples entre 0 i 100
+//definim variable amb el máxim
+    public static final int NUM_MAX = 100;
+    
+    public static void main(String[] args) {
+
+//A) Lectura del número base
+//Primer definim el tipus de dades
+    int num_base=0;
+    int i=0;
+    
+    //S'inicialitza la biblioteca (perque l'usuari introdueixi les dades)
+    Scanner scan = new Scanner(System.in);
+            boolean tipus_ok;
+            boolean num_correcte = false;
+            
+        //definir una variable booleana i avaluar-la dins del while  
+        while(!num_correcte){
+            System.out.print("Introdueix el numero base: ");
+            
+                tipus_ok = scan.hasNextInt();//aqui analitzem tipus de dada
+                if ( tipus_ok ){ // si és un número sencer (int)
+                    num_base = scan.nextInt();
+                if((num_base>LIMIT_MIN)&&(num_base<=LIMIT_MAX)){
+                    num_correcte = true;
+        }
+        
+        //si el valor del número introduït es incorrecte, 
+        //el programa ho ha de seguir demanant indefinidament 
+        //fins que sigui correcte
+        }else{ 
+                 scan.nextLine();
+            }
+        }
+//B) Generació i mostra dels múltiples
+//Mostem els multiples del numero entrat
+        while(i <= NUM_MAX){
+                if(i%num_base == 0){
+                System.out.println(i);
+        }
+            i++;
+           }
+    }
+}
