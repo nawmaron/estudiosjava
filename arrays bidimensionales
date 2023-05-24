@@ -1,0 +1,88 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.e14_zahrif;
+
+/**
+ *
+ * @author naw12
+ */
+public class E14_ZahriF {
+//Declarem la constant 
+
+    private static final int SEXE_HOME = 0;
+    private static final float SEXE_DONA = 1;
+    
+public static void main (String[] args) {
+    
+//Definim l'array bidimensional dels corredors amb totes les dades
+
+int [][] corredors = {
+ {3457, 1, 51, 52},
+ {3467, 1, 32, 41},
+ {3568, 0, 14, 57},
+ {3570, 0, 12, 63},
+ {3571, 1, 45, 63},
+ {3572, 0, 17, 46},
+ {3573, 0, 12, 44},
+ {3574, 0, 30, 42},
+ {3575, 1, 24, 77},
+ {3576, 0, 57, 48}
+};
+//Definim un array amb el nom de les files 
+String[] nomFila = {"DORSAL", "SEXE", "EDAT","MINUTS"};
+
+//A) Definició array bidimensional i llistat
+//recorre cada fila de la matriu corredors
+    for (int i = 0; i < nomFila.length; i++) {
+        System.out.print(nomFila[i] + " ");
+}
+/*Imprimeix una línia en blanc
+després de mostrar els noms de les columnes*/
+
+System.out.println();
+
+// Recorre cada fila de la matriu i mostra els valors
+    for (int i = 0; i < corredors.length; i++) {
+        for (int j = 0; j < corredors[i].length; j++) {
+            System.out.print(corredors[i][j] + " ");
+        }
+        System.out.println();
+        }
+    //B) Trobar el guanyador i guanyadora per sexe
+    
+    //Definim tipus de dades segons el que ens demanen:
+    //Guanyadors: l'home i dona que hagin fet el temps més petit.
+    int tempsPetHome = 0;
+    int tempsPetDona = 0;
+    int Guanyador = 0;
+    int Guanyadora = 0;
+    
+    //Mirarem el guanyador per sexe:
+        
+    //Començem amb corredors home
+    for (int i = 0; i < corredors.length; i++) {
+        if (corredors[i][1] == SEXE_HOME) {
+                if (corredors[i][3] < tempsPetHome) {
+                    tempsPetHome = corredors[i][3];
+                    Guanyador = i;
+                    }
+        } else { // després per a corredores dones
+            if (corredors[i][3] < tempsPetDona) {
+                tempsPetDona = corredors[i][3];
+                Guanyadora = i;
+            }
+        }
+    }
+    //Mostrem els guanyadors amb l'info de la matriu
+    
+System.out.println("El guanyador de la cursa és: " + corredors[Guanyador][0] + " " 
+        + corredors[Guanyador][1] + " " + corredors[Guanyador][2] + " " + corredors[Guanyador][3]);
+System.out.println("La guanyadora de la cursa és: " + corredors[Guanyadora][0] + " " 
+        + corredors[Guanyadora][1] + " " + corredors[Guanyadora][2] + " " + corredors[Guanyadora][3]);
+         
+}
+}
+
+   
