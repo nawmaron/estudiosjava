@@ -1,0 +1,124 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.da2m3b2_eac4p1_zahri_n;
+
+/**
+ *
+ * @author naw12
+ */
+public class DA2M3B2_EAC4P1_Zahri_N {
+
+    static final short ID_BENZINERA = 0;
+    static final short CODI_POSTAL = 1;
+    static final short PROPIETARI = 2;
+
+    static final short PREU_SP = 0;
+    static final short PREU_DI = 1;
+    static final short NUM_BENZINERES = 15;
+
+    static final short ERROR = -1;
+    static final short ERROR_COLISIO = -2;
+    static final short ERROR_NOESPAI = -3;
+
+    static final String MISSATGE_INGRES_OK = "Dades benzinera correctament introduida ";
+    static final String MISSATGE_ERROR_COLISIO = "Error - Id benzinera existent:";
+    static final String MISSATGE_ERROR_NOESPAI = "Error - Espai insuficient:";
+
+    int numBenzineres = 0;
+    String[][] dadesBenzineres;
+
+    float[][] preusBenzina;
+
+    public static void main(String[] args) {
+        DA2M3B2_EAC4P1_Zahri_N prg = new DA2M3B2_EAC4P1_Zahri_N();
+        prg.inici();
+    }
+
+    private void inici() {
+        int res;
+
+        dadesBenzineres = new String[NUM_BENZINERES][3];
+        preusBenzina = new float[NUM_BENZINERES][3];
+
+        //Inicialitzem l'array benzineres.
+        for (int i = 0; i < NUM_BENZINERES; i++) {
+            dadesBenzineres[i][ID_BENZINERA] = "";
+            dadesBenzineres[i][CODI_POSTAL] = "";
+            dadesBenzineres[i][PROPIETARI] = "";
+            preusBenzina[i][PREU_SP] = 0f;
+            preusBenzina[i][PREU_DI] = 0f;
+        }
+
+        // Simulem l'entrada dades de cinc benzineres    	    		
+        res = enregistrarBenzinera("BZ001", "08745", "CEPSA", 1.74f, 1.48f, dadesBenzineres, preusBenzina);
+        if (res >= 0) {
+            System.out.println(MISSATGE_INGRES_OK + " BZ001 a la posició " + res);
+        }
+        res = enregistrarBenzinera("BZ002", "08747", "REPSOL", 1.80f, 1.47f, dadesBenzineres, preusBenzina);
+        if (res >= 0) {
+            System.out.println(MISSATGE_INGRES_OK + " BZ002 a la posició " + res);
+        }
+        res = enregistrarBenzinera("BZ003", "08748", "MIRALLES", 1.65f, 1.46f, dadesBenzineres, preusBenzina);
+        if (res >= 0) {
+            System.out.println(MISSATGE_INGRES_OK + " BZ003 a la posició " + res);
+        }
+        res = enregistrarBenzinera("BZ004", "08749", "ESCLAT", 1.40f, 1.16f, dadesBenzineres, preusBenzina);
+        if (res >= 0) {
+            System.out.println(MISSATGE_INGRES_OK + " BZ004 a la posició " + res);
+        }
+        res = enregistrarBenzinera("BZ005", "08750", "BONPREU", 1.35f, 1.15f, dadesBenzineres, preusBenzina);
+        if (res >= 0) {
+            System.out.println(MISSATGE_INGRES_OK + " BZ005 a la posició " + res);
+        }
+
+        //Provoquen un error amb dades ja existents.	
+        res = enregistrarBenzinera("BZ001", "08750", "BONPREU", 1.74f, 1.45f, dadesBenzineres, preusBenzina);
+        if (res == ERROR_COLISIO) {
+            System.out.println(MISSATGE_ERROR_COLISIO + "BZ001");
+        }
+        //Provoquem un error d'espai insuficient.
+        for (int iBenz = 6; iBenz - 1 < dadesBenzineres.length; iBenz++) {
+            res = enregistrarBenzinera("BZ00" + iBenz, "XXXX", "XXXX", 1.11f, 1.11f, dadesBenzineres, preusBenzina);
+        }
+        res = enregistrarBenzinera("BZ0016", "08750", "BONPREU", 1.74f, 1.45f, dadesBenzineres, preusBenzina);
+        if (res == ERROR_NOESPAI) {
+            System.out.println(MISSATGE_ERROR_NOESPAI + "BZ0016");
+        }
+    }
+
+    //Metodes a implementar
+    public int enregistrarBenzinera(String idBenzinera, String codiPostal, String NomPropietari, float preuSP, float preuDiesel, String[][] dBenzineres, float[][] preusBenzina) {
+        int posicio = cercaPosBuida(dBenzineres);
+
+        if (posicio != -1) {
+            dBenzineres[posicio][ID_BENZINERA] = idBenzinera;
+            dBenzineres[posicio][CODI_POSTAL] = codiPostal;
+            dBenzineres[posicio][PROPIETARI] = NomPropietari;
+            preusBenzina[posicio][PREU_SP] = preuSP;
+            preusBenzina[posicio][PREU_DI] = preuDiesel;
+            numBenzineres++;
+            return posicio;
+        } else {
+            return ERROR_NOESPAI; // Missatge d'error d'espai insuficient
+        }
+    }
+
+    public int cercaBenzinera(String idBenzinera, String[][] dBenzineres) {
+        for (int i = 0; i < dBenzineres.length; i++) {
+            if (dBenzineres[i][ID_BENZINERA] == idBenzinera) {
+                return i; // Trobat, retorna la posició
+            }
+        }
+        return ERROR; // Si no es troba retorna -1
+    }
+
+    public int cercaPosBuida(String[][] dBenzineres) {
+        for (int i = 0; i < dBenzineres.length; i++) {
+            if (dBenzineres[i][ID_BENZINERA].length() == 0) {
+                return i; // S'ha trobat una posició buida, retorna la posició
+            }
+        }
+        return ERROR; // No s'ha trobat cap posició buida, retorna -1
+    }
+}
